@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useQuery } from 'react-apollo'
 
 import * as queries from '../../api/queries'
 
 function BookList() {
 
-  const query = useQuery(queries.BOOKS)
+  const {loading, error, data} = useQuery(queries.BOOKS)
 
-  useEffect(() => {
-    console.log(query)
-  }, [query])
+  if(loading) {
+    return <h2>Carregando...</h2>
+  }
+
+  if(error) {
+    return <h2>{error.message}</h2>
+  }
 
   return (
     <div>
-      booklist
+      <ul>
+        {data.books.map(book => (
+          <li key={book.id}>
+            <p>{book.title}</p>
+            <ul>
+              {book.authors.map(author => (
+                <li key={author.id}>{author.name}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
