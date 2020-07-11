@@ -1,8 +1,11 @@
 import React from 'react'
+import BookList from '../../containers/BookList'
 
 function Main() {
   return (
-    <div>Main</div>
+    <div>
+      <BookList />
+    </div>
   )
 }
 
