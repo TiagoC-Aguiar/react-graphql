@@ -24,7 +24,8 @@ function BookCreator() {
         variables: {
           title: values.bookTitle,
           authorsId: [values.authorId]
-        }
+        },
+        refetchQueries: [{ query: queries.BOOKS }]
       })
       actions.setValues({ bookTitle: '', authorId: '' }, false)
     }

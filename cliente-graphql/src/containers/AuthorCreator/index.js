@@ -19,6 +19,10 @@ function AuthorCreator() {
         variables: {
           name: values.authorName
         }
+      }).then(data => {
+        console.log('Data: ', data);
+      }).catch(err => {
+        console.log('Error: ', err.message);
       })
       actions.setValues({ authorName: ''}, false)
     }
